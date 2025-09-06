@@ -1,0 +1,17 @@
+.container {
+      width: 100%;
+      padding: 10px;
+    }
+
+@media (min-width: 768px) {
+      .container {
+        width: 750px;
+        margin: 0 auto; /* 居中 */
+      }
+    }
+
+@media (min-width: 1024px) {
+      .container {
+        width: 960px;
+      }
+    }
