@@ -24,7 +24,7 @@
           <div class="report-reason">{{ report.reason }}</div>
         </div>
         <div class="card-footer">
-          <!-- 这里的点击事件暂时是占位符，等待后续的审批接口 -->
+
           <button @click="handleApprove(report.report_id)" class="button-approve">
             通过 (确认违规)
           </button>
@@ -134,7 +134,7 @@ h2 {
 }
 .card-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between;  /* 左中右 */
   background-color: #f7f7f7;
   padding: 0.8rem 1.5rem;
   border-bottom: 1px solid #e0e0e0;

@@ -14,6 +14,7 @@
         <div class="post-meta">
           <span>发布者ID: {{ post.user_id }}</span>
           <span>时间: {{ formatTime(post.time) }}</span>
+
           <div 
             class="like-section" 
             :class="{ 'liked': post.is_liked }" 
@@ -22,6 +23,7 @@
             <IconThumbUp class="like-icon" />
             <LikeUpdater :post-id="post.id" :initial-likes="post.likes" />
         </div>
+
         </div>
         <div class="post-actions">
           <!-- 修改按钮 -->
@@ -106,7 +108,7 @@ const editingPost = reactive({
   content: ''
 });
 
-
+//获取所有帖子
 const fetchPosts = async () => {
   try {
     isLoading.value = true; 
@@ -116,20 +118,21 @@ const fetchPosts = async () => {
 
     if (result.code == 200) {
        postList.value = result.data.post_list.sort((a, b) => new Date(b.time) - new Date(a.time));
-      }
+      } //排序，新的在前
     else {
       throw new Error(result.msg);
     }
   } catch (error) {
     console.error('获取帖子列表失败:', error);
     loadingError.value = error.message; 
-    stopPolling(); // 如果接口出错，停止轮询，防止不断发送错误请求
+    //stopPolling(); // 如果接口出错，停止轮询，防止不断发送错误请求
   } finally {
     isLoading.value = false; 
   }
 };
 
 
+//点赞
 const handleLike = async (post) => {
   // 状态锁
   if (post.isLiking) return; 
@@ -165,12 +168,14 @@ const handleLike = async (post) => {
   }
 };
 
-
+//时间
 const formatTime = (timeString) => {
   const date = new Date(timeString);
   return date.toLocaleString(); 
 };
 
+
+//删除
 const handleDeletePost = async (postId) => {
   if (!confirm('确定要删除这条帖子吗？')) {
     return;
@@ -196,7 +201,7 @@ const handleDeletePost = async (postId) => {
 };
 
 
-
+//举报
 const openReportModal = (postId) => {
   reportingPostId.value = postId;
   isReportModalVisible.value = true;
@@ -236,6 +241,8 @@ const handleReportSubmit = async () => {
 };
 
 
+
+//修改
 const openEditModal = (post) => {
   editingPost.id = post.id;
   editingPost.content = post.content;
@@ -288,7 +295,7 @@ const handleEditSubmit = async () => {
 onMounted(() => {
   fetchPosts();
 });
-
+//防白屏
 
 </script>
 
@@ -307,7 +314,7 @@ onMounted(() => {
 }
 
 .posts-list {
-  list-style-type: none;
+  list-style-type: none; /* 去掉默认的列表符号 */
   padding: 0;
 }
 
@@ -394,6 +401,7 @@ onMounted(() => {
 }
 
 
+/* 举报弹窗 */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -402,8 +410,8 @@ onMounted(() => {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* 主轴（水平）居中 */
+  align-items: center; /* 交叉轴（垂直）居中 */
   z-index: 1000;
 }
 
@@ -454,13 +462,15 @@ onMounted(() => {
   color: white;
 }
 
+
+
 .like-section {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 5px; /* 图标与数字间距 */
   cursor: pointer;
   color: #888;
-  transition: color 0.2s;
+  transition: color 0.2s; /*过渡效果*/
 }
 .like-section:hover {
   color: #007bff;

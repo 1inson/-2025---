@@ -42,7 +42,7 @@
         isSubmitting.value = true; 
         const response = await createPost({
           content: content,
-          user_id: userStore.userId 
+          user_id: userStore.userId //全局状态读取
         });
         const result = response.data;
 
@@ -57,7 +57,7 @@
         console.error('发布帖子请求出错:', error);
         alert('发布失败，请检查网络或联系管理员。');
       } finally {
-        isSubmitting.value = false; 
+        isSubmitting.value = false; //按钮复用
       }
     };
     </script>
@@ -78,8 +78,8 @@
     }
     .post-form {
       display: flex;
-      flex-direction: column;
-      flex-grow: 1;
+      flex-direction: column; /* 垂直排列 */
+      flex-grow: 1; /* 填充剩余空间 */
     }
     .post-form textarea {
       width: 100%;
@@ -87,7 +87,7 @@
       font-size: 1rem;
       border: 1px solid #ccc;
       border-radius: 8px;
-      resize: vertical;
+      resize: vertical; /* 可垂直伸缩 */
       margin-bottom: 1rem;
     }
     .submit-button {

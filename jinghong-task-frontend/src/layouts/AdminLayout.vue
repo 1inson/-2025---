@@ -6,6 +6,9 @@
             <RouterLink to="/admin/dashboard" class="nav-link">后台首页</RouterLink>
             <RouterLink to="/admin/reports" class="nav-link">举报审批</RouterLink>
           </nav>
+          <div class="logout-section">
+        <button @click="handleLogout" class="logout-button">退出登录</button>
+      </div>
         </aside>
         <main class="main-content">
           <RouterView />
@@ -14,7 +17,19 @@
     </template>
 
     <script setup>
-    import { RouterLink, RouterView } from 'vue-router';
+    import { RouterLink, RouterView, useRouter } from 'vue-router';
+    import { useUserStore } from '@/store/user.js';
+    
+    const router = useRouter();
+    const userStore = useUserStore();
+
+    const handleLogout = () => {
+    if (confirm('确定要退出登录吗？')) {
+      userStore.logout();
+      router.push('/');
+  }
+};
+
     </script>
 
     <style scoped>
@@ -24,7 +39,8 @@
     .sidebar { 
         width: 220px; 
         background-color: #343a40;
-        color: white; padding: 1.5rem 0;
+        color: white; 
+        padding: 1.5rem 0;
         flex-shrink: 0; }
     .logo {
         font-size: 1.5rem; 
@@ -50,4 +66,20 @@
         padding: 2rem; 
         overflow-y: auto; 
         background-color: #f8f9fa; }
+
+      .logout-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.logout-button:hover {
+  background-color: #c82333;
+}
     </style>

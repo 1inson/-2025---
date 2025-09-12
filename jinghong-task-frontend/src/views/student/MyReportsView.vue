@@ -113,7 +113,7 @@ h2 {
   transition: transform 0.2s, box-shadow 0.2s;
 }
 .report-item:hover {
-  transform: translateY(-3px);
+  transform: translateY(-3px); /* 轻微上移 */
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 .report-header {
@@ -130,14 +130,28 @@ h2 {
   font-weight: bold;
   font-size: 0.9rem;
 }
-.status-pending { background-color: #ffc107; color: #333; }
-.report-item.status-rejected { border-left-color: #6c757d; }
-.status-rejected { background-color: #6c757d; color: white; }
-.report-item.status-approved { border-left-color: #28a745; }
-.status-approved { background-color: #28a745; color: white; }
-.report-time { font-size: 0.9rem; color: #888; }
-.report-body p { margin: 0.8rem 0; line-height: 1.6; }
-.preview-text { color: #555; font-style: italic; }
+.status-pending { 
+  background-color: #ffc107; 
+  color: #333; }
+.report-item.status-rejected { 
+  border-left-color: #6c757d; }
+.status-rejected { 
+  background-color: #6c757d; 
+  color: white; }
+.report-item.status-approved { 
+  border-left-color: #28a745; }
+.status-approved { 
+  background-color: #28a745; 
+  color: white; }
+.report-time { 
+  font-size: 0.9rem; 
+  color: #888; }
+.report-body p { 
+  margin: 0.8rem 0; 
+  line-height: 1.6; }
+.preview-text { 
+  color: #555; 
+  font-style: italic; }
 .report-footer {
   margin-top: 1rem;
   padding-top: 1rem;

@@ -1,7 +1,7 @@
+//全局状态储存
 import { defineStore } from 'pinia'
 
 export const useUserStore = defineStore('user', {
-  // 1. 补全 state，必须有 userType
   state: () => ({
     userId: null,
     userType: null, 
